@@ -1,0 +1,3 @@
+{
+    "connectionString" : "mongodb+srv://covaxys:covaxys@123@cluster0.weusr.mongodb.net/covaxys_DB?retryWrites=true&w=majority"
+}
