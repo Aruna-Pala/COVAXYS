@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
   createdDate: { type: Date, default: Date.now },
 });
 
-userSchema.set("toJSON", {
+userSchema.set('toJSON', {
   virtuals: true,
   versionKey: false,
   transform: function (doc, ret) {
@@ -19,5 +19,5 @@ userSchema.set("toJSON", {
   },
 });
 
-var User = mongoose.model("User", userSchema);
+var User = mongoose.model('User', userSchema);
 export default User;

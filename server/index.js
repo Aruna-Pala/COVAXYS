@@ -1,30 +1,34 @@
-import express from "express";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import cors from "cors";
-import userRouter from "./routes/user.js";
+const express = require('express');
+const connectDb = require('./config/dbconfig');
+require('dotenv').config();
 
 const app = express();
 
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+// body parser
+app.use(express.json());
+app.use(express.urlencoded());
 
+// cors
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  next();
+});
 
-app.use("/user", userRouter);
+// default route
+app.get('/', (req, res, next) => {
+  res.send('Covaxys server running!');
+});
 
+// routes
+app.use('/api/user', require('./routes/api/user'));
 
-// database
-const CONNECTION_URL = "mongodb+srv://covaxys:covaxys@123@cluster0.weusr.mongodb.net/covaxys_DB?retryWrites=true&w=majority";
+// connect database
+connectDb();
+
+// initialize server
 const PORT = process.env.PORT || 5000;
-
-mongoose
-  .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() =>
-    app.listen(PORT, () =>
-      console.log(`Server Running on Port: http://localhost:${PORT}`)
-    )
-  )
-  .catch((error) => console.log(`${error} did not connect`));
-
-mongoose.set("useFindAndModify", false);
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}...`);
+});
