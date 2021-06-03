@@ -1,0 +1,45 @@
+--------------------------------------------------------------
+### Use cases
+Patient context:
+www.covaxys.com
+1. Landing page: (book appointment/login)
+2. Click book appointment 
+3. Appointment page: (appointment availability, which centers are open, which vaccine (moderna/pfizer))
+    name, dob, time-date of appointment, vaccine-center-dropdown, address, email, password
+4. Click confirm 
+5. User account page:
+    info about his appointment
+    vaccine status: vaccinated/waaiting for appointment
+    download link for certificate
+
+
+Hospitals/Doctors context: 
+www.covaxys.com/doctor
+1. signup as doctor/login as doctor 
+2. dashboard: 
+    - view list of all appointments 
+    - mark an appointment as done 
+    - cancel appointment 
+    - for each appointment show patient details 
+
+-------------------------------------------------------------
+### Backend routes 
+1. Auth/user route
+    - register 
+    - login
+    - get user
+
+2. Appointments (patients)
+    - post appointment 
+    - get appointment (for self only)
+    - modify appointment
+    - delete/cancel appointment
+    - get certificate
+
+3. Appointments (Hospitals/doctors)
+    - get all apointments (for that particular hospital)
+    - modify appointments
+    - delete appointment
+    - create/post certificate
+    - get vaccine stock 
+    - update vaccine stock
