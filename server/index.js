@@ -16,7 +16,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// default route
+// default route covaxys.com
 app.get('/', (req, res, next) => {
   res.send('Covaxys server running!');
 });
