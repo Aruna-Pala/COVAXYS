@@ -28,7 +28,7 @@ router.get('/:id', isAuth, userController.getUserById);
 
 module.exports = router;
 
-/*
+
 // routes
 userRouter.post('/register', register);
 userRouter.post('/authenticate', authenticate);
@@ -74,4 +74,4 @@ function _delete(req, res, next) {
         .then(() => res.json({}))
         .catch(err => next(err));
 }
-*/
+
