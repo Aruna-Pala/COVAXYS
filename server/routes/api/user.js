@@ -6,29 +6,38 @@ const router = express.Router();
 
 const isAuth = require('../../middlewares/isAuth');
 
-// @route   POST api/users
+// @route   POST api/users/register
 // @desc    Register user
 // @access  public
 router.post(
-  '/',
+  '/register',
   [
-    body('name', 'Invalid name').trim().not().isEmpty(),
+    body('firstName', 'First name required').trim().notEmpty(),
+    body('lastName', 'Last name required').trim().notEmpty(),
     body('email', 'Invalid email').trim().isEmail(),
-    body('password', 'Enter valid password with min length of 6 char')
-      .trim()
-      .isLength({ min: 6 }),
+    body('DOB', 'DOB invalid').trim().isDate(),
+    body('DOB', 'DOB required').trim().notEmpty(),
+    body('password', 'Password: min 6 characters').trim().isLength({ min: 6 }),
+    body('role', 'Role required').trim().notEmpty(),
   ],
-  userController.postUser
+  userController.registerUser
 );
 
-// @route   GET api/users/:id
-// @desc    Get user by id
-// @access  protected
-router.get('/:id', isAuth, userController.getUserById);
+// @route   POST api/user/authenticate
+// @desc    Login and send token
+// @access  public
+router.post(
+  '/authenticate',
+  [
+    body('email', 'Invalid credentials').isEmail().trim(),
+    body('password', 'Invalid credentials').exists().trim(),
+  ],
+  userController.authenticate
+);
 
 module.exports = router;
 
-
+/*
 // routes
 userRouter.post('/register', register);
 userRouter.post('/authenticate', authenticate);
@@ -74,4 +83,4 @@ function _delete(req, res, next) {
         .then(() => res.json({}))
         .catch(err => next(err));
 }
-
+*/
