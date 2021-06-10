@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -34,10 +35,8 @@ const userSchema = new Schema({
   },
   medicalRecords: [
     {
-      recordId: {
-        type: Schema.Types.ObjectId,
-        ref: 'MedicalRecord',
-      },
+      type: Schema.Types.ObjectId,
+      ref: 'MedicalRecord',
     },
   ],
 });
