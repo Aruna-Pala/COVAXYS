@@ -23,6 +23,7 @@ app.get('/', (req, res, next) => {
 
 // routes
 app.use('/api/user', require('./routes/api/user'));
+app.use('/api/appointment', require('./routes/api/appointment'));
 
 // connect database
 connectDb();
