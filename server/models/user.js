@@ -14,11 +14,9 @@ const userSchema = new Schema({
   },
   firstName: {
     type: String,
-    required: true,
   },
   lastName: {
     type: String,
-    required: true,
   },
   role: {
     type: String,
@@ -26,8 +24,6 @@ const userSchema = new Schema({
   },
   DOB: {
     type: Date,
-    required: true,
-    default: Date.now,
   },
   createdDate: {
     type: Date,

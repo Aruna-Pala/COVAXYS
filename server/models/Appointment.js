@@ -20,11 +20,9 @@ const appointmentSchema = new Schema({
   },
   address: {
     type: String,
-    required: true,
   },
   vaccineReceived: {
     type: Boolean,
-    required: true,
     default: false,
   },
   createdAt: {
