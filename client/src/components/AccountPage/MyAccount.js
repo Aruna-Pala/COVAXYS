@@ -3,12 +3,12 @@ import './MyAccount.css';
 import React, { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import MedicalData from './MedicalData';
 
 
 const MyAccount = () => {
     const [startDate, setStartDate] = useState(new Date());
     return (
-        <div>
             <div>
                 <div className="jumbotron">
                     <h5 className="card-title">PERSONAL DETAILS</h5>
@@ -129,10 +129,14 @@ const MyAccount = () => {
                                 <img src="images/user.png" className=" img-fluid" />
                             </div>
                         </div>
+                        <MedicalData />
+                        <div className="save_btn">
+                        <button type="button" class="btn btn-outline-success">Save</button>
+                        </div>
                     </form>
                 </div>
+                
             </div>
-        </div>
     );
 }
 export default MyAccount;  

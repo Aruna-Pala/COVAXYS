@@ -23,3 +23,12 @@
     width: 200px!important;
     height: 200px!important;
 }
+.save_btn{
+    width: 20%;
+    margin: auto;
+}
+.save_btn>button{
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
+}

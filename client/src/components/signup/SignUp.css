@@ -7,11 +7,11 @@
     /* width: 50%!important; */
     margin: auto!important;
 }
-.main_div{
+/* .main_div{
     background-image: url("/images/b.jpg")!important;
     background-repeat: no-repeat;
     background-size: cover;
-}
+} */
 .jumbotron{
     padding-bottom: 5px!important;
 }
