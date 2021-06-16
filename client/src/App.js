@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Navigation from './components/navigationBar/Navigation';
 import SignUp from './components/signup/SignUp';
+import MyAccount from './components/AccountPage/MyAccount';
 
 function App() {
   return (
@@ -14,9 +15,7 @@ function App() {
         <Route path='/signup'>
           <SignUp />
         </Route>
-        <Route path='/'>
-          <Home />
-        </Route>
+        
         <Route path='/myaccount'>
           <MyAccount />
         </Route>

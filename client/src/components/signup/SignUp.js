@@ -2,12 +2,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card,form } from 'react-bootstrap';
 import './SignUp.css';
 import React, { useState } from 'react';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 
 
  const SignUp=(props)=>{
+    const [startDate, setStartDate] = useState(new Date());
 //     const [formData, setForm] = useState({
 //         firstname:'',
 //         lastname: '',
@@ -29,20 +31,19 @@ import React, { useState } from 'react';
 //         setPassword('');
 //       };
     return(
-        <div>
+        <div className="main_div">
             <section>
                 <div className="jumbotron">
                     <div className="container text-center">
                         <h1 className="display-4">COVAXSYS</h1>
                     </div>
-                
                 </div>
             </section>
 
             <section>
                 <div className="card col-xl-6 col-12">
                     <div className="card-body text-center">
-                        <h5 className="card-title">Sign Up Here</h5>
+                        <h5 className="card-title">Schedule an Appointment</h5>
                     </div>
                     <div className="loginForm col-xl-9 col-12 text-center">
                         <form>
@@ -62,7 +63,23 @@ import React, { useState } from 'react';
                                 <label for="exampleInputPassword1">Set Password</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1" required></input>
                             </div>
-                            <p>Already a member? <a>Log in</a></p>
+                            <div className="text-left form-group">
+                                <label for="exampleAppointmentDate">Select Appointment Date</label>
+                                <div>
+                                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                                </div>
+                            </div>
+                            <div className="text-left form-group">
+                                <label for="exampleVaccineCenter">Select Vaccination Center</label>
+                                <div>
+                                <select className="form-select" aria-label="Default select example">
+                                <option value="grapefruit" selected>Grapefruit</option>
+                                <option value="lime">Lime</option>
+                                <option selected value="coconut">Coconut</option>
+                                <option value="mango">Mango</option>
+                            </select>
+                                </div>
+                            </div>
                             <button type="submit" class="btn btn-primary">Sign up</button>
                         </form>
                     </div>

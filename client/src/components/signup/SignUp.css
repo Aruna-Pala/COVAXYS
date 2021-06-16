@@ -1,0 +1,17 @@
+.card{
+    /* width: 50%!important; */
+    margin: auto!important;
+    
+}
+.loginForm{
+    /* width: 50%!important; */
+    margin: auto!important;
+}
+.main_div{
+    background-image: url('C:\Users\MILESH\COVAXYS\client\src\assets\b.jpg')!important;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.jumbotron{
+    padding-bottom: 5px!important;
+}
