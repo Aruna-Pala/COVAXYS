@@ -9,8 +9,8 @@ const router = express.Router();
 
 
 
-// @route   GET api/appointment/:id
-// @desc    Get an appointment by id
+// @route   GET api/appointment/getAllUserAppointment
+// @desc    Get all appointments scheduled by user
 // @access  protected
 router.get(
     "/getAllUserAppointment",
