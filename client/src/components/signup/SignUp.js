@@ -66,13 +66,13 @@ import "react-datepicker/dist/react-datepicker.css";
                             <div className="text-left form-group">
                                 <label for="exampleAppointmentDate">Select Appointment Date</label>
                                 <div>
-                                    <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                                <input class="form-control" type="date" id="example-date-input"></input>
                                 </div>
                             </div>
                             <div className="text-left form-group">
                                 <label for="exampleVaccineCenter">Select Vaccination Center</label>
                                 <div>
-                                <select className="form-select" aria-label="Default select example">
+                                <select className="form-select form-control" aria-label="Default select example">
                                 <option value="grapefruit" selected>Grapefruit</option>
                                 <option value="lime">Lime</option>
                                 <option selected value="coconut">Coconut</option>
