@@ -10,29 +10,27 @@ const router = express.Router();
 // @desc    Register user
 // @access  public
 router.post(
-  '/register',
-  [
-    body('firstName', 'First name required').trim().notEmpty(),
-    body('lastName', 'Last name required').trim().notEmpty(),
-    body('email', 'Invalid email').trim().isEmail(),
-    body('DOB', 'DOB invalid').trim().isDate(),
-    body('DOB', 'DOB required').trim().notEmpty(),
-    body('password', 'Password: min 6 characters').trim().isLength({ min: 6 }),
-    body('role', 'Role required').trim().notEmpty(),
-  ],
-  userController.registerUser
+    '/register', [
+        body('firstName', 'First name required').trim().notEmpty(),
+        body('lastName', 'Last name required').trim().notEmpty(),
+        body('email', 'Invalid email').trim().isEmail(),
+        body('DOB', 'DOB invalid').trim().isDate(),
+        body('DOB', 'DOB required').trim().notEmpty(),
+        body('password', 'Password: min 6 characters').trim().isLength({ min: 6 }),
+        body('role', 'Role required').trim().notEmpty(),
+    ],
+    userController.registerUser
 );
 
 // @route   POST api/user/authenticate
 // @desc    Login and send token
 // @access  public
 router.post(
-  '/authenticate',
-  [
-    body('email', 'Invalid credentials').isEmail().trim(),
-    body('password', 'Invalid credentials').exists().trim(),
-  ],
-  userController.authenticate
+    '/authenticate', [
+        body('email', 'Invalid credentials').isEmail().trim(),
+        body('password', 'Invalid credentials').exists().trim(),
+    ],
+    userController.authenticate
 );
 
 module.exports = router;

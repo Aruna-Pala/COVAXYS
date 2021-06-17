@@ -4,93 +4,94 @@ const { validationResult } = require('express-validator');
 
 const User = require('../models/User');
 
-exports.registerUser = async (req, res, next) => {
-  try {
-    // validate
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        errors: errors.array(),
-      });
+exports.registerUser = async(req, res, next) => {
+    try {
+        // validate
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array(),
+            });
+        }
+
+        // check for existing user
+        const { firstName, lastName, DOB, role, email, password } = req.body;
+        
+        if (await User.findOne({ email: email })) {
+            return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+        }
+
+        // hash password
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // create and save user
+        const user = new User({
+            firstName: firstName,
+            lastName: lastName,
+            DOB: DOB,
+            role: role,
+            email: email,
+            password: hashedPassword,
+        });
+        await user.save();
+
+        // return jwt
+        const payload = {
+            user: {
+                id: user._id,
+            },
+        };
+        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+            if (err) {
+                throw err;
+            }
+            res.status(200).json({ token });
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ errors: [{ msg: 'Server error' }] });
     }
-
-    // check for existing user
-    const { firstName, lastName, DOB, role, email, password } = req.body;
-    if (await User.findOne({ email: email })) {
-      return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
-    }
-
-    // hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // create and save user
-    const user = new User({
-      firstName: firstName,
-      lastName: lastName,
-      DOB: DOB,
-      role: role,
-      email: email,
-      password: hashedPassword,
-    });
-    await user.save();
-
-    // return jwt
-    const payload = {
-      user: {
-        id: user._id,
-      },
-    };
-    jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
-      if (err) {
-        throw err;
-      }
-      res.status(200).json({ token });
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ errors: [{ msg: 'Server error' }] });
-  }
 };
 
-exports.authenticate = async (req, res, next) => {
-  try {
-    // validate
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({
-        errors: errors.array(),
-      });
-    }
+exports.authenticate = async(req, res, next) => {
+    try {
+        // validate
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array(),
+            });
+        }
 
-    // check for existing user
-    const { firstName, lastName, DOB, role, email, password } = req.body;
-    const user = await User.findOne({ email: email });
-    if (!user) {
-      return res.status(400).json({ errors: [{ msg: 'User does not exist' }] });
-    }
+        // check for existing user
+        const { firstName, lastName, DOB, role, email, password } = req.body;
+        const user = await User.findOne({ email: email });
+        if (!user) {
+            return res.status(400).json({ errors: [{ msg: 'User does not exist' }] });
+        }
 
-    // Match password
-    const matched = await bcrypt.compare(password, user.password);
-    if (!matched) {
-      return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
-    }
+        // Match password
+        const matched = await bcrypt.compare(password, user.password);
+        if (!matched) {
+            return res.status(400).json({ errors: [{ msg: 'Invalid credentials' }] });
+        }
 
-    // return jwt
-    const payload = {
-      user: {
-        id: user._id,
-      },
-    };
-    jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
-      if (err) {
-        throw err;
-      }
-      res.status(200).json({ token });
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ errors: [{ msg: 'Server error' }] });
-  }
+        // return jwt
+        const payload = {
+            user: {
+                id: user._id,
+            },
+        };
+        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+            if (err) {
+                throw err;
+            }
+            res.status(200).json({ token });
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ errors: [{ msg: 'Server error' }] });
+    }
 };
 
 /*
