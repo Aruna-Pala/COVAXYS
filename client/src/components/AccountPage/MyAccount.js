@@ -7,7 +7,6 @@ import MedicalData from './MedicalData';
 
 
 const MyAccount = () => {
-    const [startDate, setStartDate] = useState(new Date());
     return (
             <div>
                 <div className="jumbotron">

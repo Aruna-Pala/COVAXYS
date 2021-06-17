@@ -11,8 +11,10 @@ function App() {
   return (
     <div className='App'>
       <Navigation />
-
       <Switch>
+        <Route path='/home'>
+          <Home />
+        </Route>
         <Route path='/signup'>
           <SignUp />
         </Route>
@@ -20,9 +22,6 @@ function App() {
           <MyAccount />
         </Route>
       </Switch>
-      <Route path='/'>
-      <Home />
-      </Route>
     </div>
   );
 }

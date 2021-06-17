@@ -9,7 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 
  const SignUp=(props)=>{
-    const [startDate, setStartDate] = useState(new Date());
+    
 //     const [formData, setForm] = useState({
 //         firstname:'',
 //         lastname: '',
@@ -35,7 +35,7 @@ import "react-datepicker/dist/react-datepicker.css";
             <section>
                 <div className="jumbotron">
                     <div className="container text-center">
-                        <h1 className="display-4">COVAXSYS</h1>
+                        <h1 className="display-6">COVAXSYS</h1>
                     </div>
                 </div>
             </section>
