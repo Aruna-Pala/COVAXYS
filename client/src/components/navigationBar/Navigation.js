@@ -15,10 +15,9 @@ return (
      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
        <ul className="navbar-nav ml-auto justify-content-center">
        <li className="nav-item"><NavLink to="/home" className="nav-link active" aria-current="page" href="#">Home</NavLink></li>
-         <li className="nav-item"><a className="nav-link active" aria-current="page" href="#">Book Appointment</a></li>
          <li className="nav-item"><a className="nav-link" href="#">Vaccine Centers</a></li>
-         <li className="nav-item"><a className="nav-link" href="#">About Us</a></li>
-         <li className="nav-item"><NavLink to="/signup"><button class="btn btn-outline-success" type="submit">Sign In</button></NavLink></li>
+         <li className="nav-item"><NavLink to="/myaccount" className="nav-link" href="#">My Account</NavLink></li>
+         <li className="nav-item"><NavLink to="/signup"><button class="btn btn-outline-success" type="submit">Book Appointment</button></NavLink></li>
        </ul>
      </div>
    </div>
